@@ -32,7 +32,6 @@ class Migration(migrations.Migration):
                 ('vehicle_name', models.CharField(max_length=40)),
                 ('vehicle_model', models.CharField(max_length=40)),
                 ('vehicle_brand', models.CharField(max_length=40)),
-                ('mileage', models.PositiveIntegerField()),
                 ('problem_description', models.CharField(max_length=500)),
                 ('date', models.DateField(auto_now=True)),
                 ('cost', models.PositiveIntegerField(null=True)),

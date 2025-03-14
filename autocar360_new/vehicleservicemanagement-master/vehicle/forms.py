@@ -36,9 +36,12 @@ class MechanicSalaryForm(forms.Form):
 class RequestForm(forms.ModelForm):
     class Meta:
         model=models.Request
-        fields=['category','vehicle_no','vehicle_name','vehicle_model','vehicle_brand','mileage','problem_description']
+        fields = ['category', 'vehicle_no', 'vehicle_name', 'vehicle_model', 'vehicle_brand', 'mileage', 'vin_number', 'year', 'problem_description']
         widgets = {
-        'problem_description':forms.Textarea(attrs={'rows': 3, 'cols': 30})
+            'problem_description': forms.Textarea(attrs={'rows': 3, 'cols': 30}),
+            'vin_number': forms.TextInput(attrs={'placeholder': 'Enter 17-digit VIN'}),
+            'mileage': forms.NumberInput(attrs={'placeholder': 'Enter mileage in KM or Miles'}),
+            'year': forms.NumberInput(attrs={'placeholder': 'Enter manufacturing year'}),
         }
 
 class AdminRequestForm(forms.Form):
