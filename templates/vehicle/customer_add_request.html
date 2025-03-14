@@ -55,6 +55,16 @@
 
     <label for="vehicle_model">Vehicle Model</label>
     {% render_field enquiry.vehicle_model class="form-control" placeholder="Vehicle Model" %}
+    
+    <label for="mileage">Mileage</label>
+    {% render_field enquiry.mileage class="form-control" placeholder="Enter Mileage" %}
+    
+    <label for="vin_number">VIN Number</label>
+    {% render_field enquiry.vin_number class="form-control" placeholder="Enter 17-digit VIN" %}
+    
+    <label for="year">Year</label>
+    {% render_field enquiry.year class="form-control" placeholder="Enter Manufacturing Year" %}
+    
 
     <label for="problem_description">Problem Description</label>
     {% render_field enquiry.problem_description class="form-control" placeholder="Problem Description" %}

@@ -41,6 +41,9 @@ class Request(models.Model):
     vehicle_name = models.CharField(max_length=40,null=False)
     vehicle_model = models.CharField(max_length=40,null=False)
     vehicle_brand = models.CharField(max_length=40,null=False)
+    mileage = models.PositiveIntegerField(null=True, blank=True)  # Allow null values
+    vin_number = models.CharField(max_length=17, unique=True, null=True, blank=True)  # Allow null
+    year = models.PositiveIntegerField(null=True, blank=True)  # Allow null
 
     problem_description = models.CharField(max_length=500,null=False)
     date=models.DateField(auto_now=True)
