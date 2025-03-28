@@ -5,9 +5,6 @@
 
 
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.js"></script>
-
 
   <style type="text/css">
     a:link {
@@ -69,14 +66,10 @@
       size:20;
     }
   </style>
-
 </head>
 
 <body>
-  <div id="calendar-container">
-    <h2>Mechanic Attendance Calendar</h2>
-    <div id='calendar'></div>
-</div>
+
   <br><br><br><br><br>
   <div style="margin-left:100px;" class="container">
     <div class="row">
@@ -110,31 +103,9 @@
     </div>
 
   </div>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
   <script type="text/javascript">
 
   </script>
-  <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
-        events: [
-            // Sample attendance data (Replace with actual data from your database)
-            { title: 'John - Present', start: '2025-04-01' },
-            { title: 'David - Absent', start: '2025-04-02' },
-            { title: 'Mike - Present', start: '2025-04-03' }
-        ]
-    });
-    calendar.render();
-});
-</script>  
 </body>
 {% endblock content %}
