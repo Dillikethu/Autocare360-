@@ -202,8 +202,24 @@ def admin_mechanic_view(request):
 
 @login_required(login_url='adminlogin')
 def admin_approve_mechanic_view(request):
-    mechanics=models.Mechanic.objects.all().filter(status=False)
-    return render(request,'vehicle/admin_approve_mechanic.html',{'mechanics':mechanics})
+    selected_address = request.GET.get('address', '')
+
+    if selected_address:
+        mechanics = models.Mechanic.objects.filter(status=False, address=selected_address)
+    else:
+        mechanics = models.Mechanic.objects.filter(status=False)
+
+    # Show all possible addresses from ALL mechanics
+    addresses = models.Mechanic.objects.values_list('address', flat=True).distinct()
+
+    print("Available Addresses:", list(addresses))  # Debug line
+
+    return render(request, 'vehicle/admin_approve_mechanic.html', {
+        'mechanics': mechanics,
+        'addresses': addresses,
+        'selected_address': selected_address,
+    })
+
 
 @login_required(login_url='adminlogin')
 def approve_mechanic_view(request,pk):
@@ -259,8 +275,21 @@ def admin_add_mechanic_view(request):
 
 @login_required(login_url='adminlogin')
 def admin_view_mechanic_view(request):
-    mechanics=models.Mechanic.objects.all()
-    return render(request,'vehicle/admin_view_mechanic.html',{'mechanics':mechanics})
+    selected_address = request.GET.get('address', '')
+
+    if selected_address:
+        mechanics = models.Mechanic.objects.filter(address=selected_address)
+    else:
+        mechanics = models.Mechanic.objects.all()
+
+    addresses = models.Mechanic.objects.values_list('address', flat=True).distinct()
+
+    return render(request, 'vehicle/admin_view_mechanic.html', {
+        'mechanics': mechanics,
+        'addresses': addresses,
+        'selected_address': selected_address,
+    })
+
 
 
 @login_required(login_url='adminlogin')

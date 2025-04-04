@@ -7,18 +7,238 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <style media="screen">
-    .jumbotron {
-      margin-top: 0px;
-      margin-bottom: 0px;
-    }
+/* Hero/Jumbotron Section Styling */
+:root {
+  --primary-color: #002f6c;
+  --secondary-color: #4a90e2;
+  --accent-color: #ffcc00;
+  --light-color: #ffffff;
+  --dark-color: #222222;
+  --transition-speed: 0.3s;
+}
 
-    .jumbotron h1 {
-      text-align: center;
-    }
+body {
+  overflow-x: hidden;
+}
 
-    .alert {
-      margin: 0px;
-    }
+/* Enhanced Jumbotron */
+.jumbotron {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, rgba(0, 47, 108, 0.9), rgba(74, 144, 226, 0.85)), 
+              url('/static/images/car-service-bg.jpg') center/cover no-repeat;
+  border-radius: 0;
+  position: relative;
+  color: var(--light-color);
+  overflow: hidden;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.2);
+}
+
+/* Decorative elements */
+.jumbotron::before {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: var(--accent-color);
+  opacity: 0.1;
+  border-radius: 50%;
+}
+
+.jumbotron::after {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  width: 150px;
+  height: 150px;
+  background: var(--accent-color);
+  opacity: 0.1;
+  border-radius: 50%;
+}
+
+/* Main heading */
+.jumbotron h1 {
+  text-align: center;
+  font-weight: 800;
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: var(--light-color);
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Animated underline for the heading */
+.jumbotron h1::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--accent-color);
+  border-radius: 2px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* Subheading */
+.jumbotron .lead {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Horizontal rule */
+.jumbotron hr.my-4 {
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 70%;
+  margin: 2rem auto;
+}
+
+/* Text paragraph */
+.jumbotron p:not(.lead) {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Button container */
+.jumbotron .lead:last-child {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+/* Button styling */
+.jumbotron .btn {
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all var(--transition-speed) ease;
+  margin: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.jumbotron .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+
+.jumbotron .btn:hover::before {
+  width: 100%;
+}
+
+/* Primary button */
+.jumbotron .btn-primary {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--primary-color);
+}
+
+.jumbotron .btn-primary:hover, 
+.jumbotron .btn-primary:focus {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.jumbotron .btn-primary:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Login button (secondary styling) */
+.jumbotron .btn-primary[href="customerlogin"] {
+  background-color: transparent;
+  border: 2px solid var(--light-color);
+  color: var(--light-color);
+}
+
+.jumbotron .btn-primary[href="customerlogin"]:hover,
+.jumbotron .btn-primary[href="customerlogin"]:focus {
+  background-color: var(--light-color);
+  color: var(--primary-color);
+}
+
+/* Car icon for Create Account button */
+.jumbotron .btn-primary[href="customersignup"]::after {
+  content: "\f1b9"; /* FontAwesome car icon */
+  font-family: "FontAwesome";
+  margin-left: 10px;
+}
+
+/* User icon for Login button */
+.jumbotron .btn-primary[href="customerlogin"]::after {
+  content: "\f007"; /* FontAwesome user icon */
+  font-family: "FontAwesome";
+  margin-left: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .jumbotron {
+    padding: 4rem 1.5rem;
+  }
+  
+  .jumbotron h1 {
+    font-size: 2.8rem;
+  }
+  
+  .jumbotron .lead {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .jumbotron {
+    padding: 3rem 1rem;
+  }
+  
+  .jumbotron h1 {
+    font-size: 2.2rem;
+  }
+  
+  .jumbotron .lead {
+    font-size: 1.2rem;
+  }
+  
+  .jumbotron .btn {
+    display: block;
+    width: 80%;
+    margin: 0.5rem auto;
+  }
+}
   </style>
 
   <title></title>

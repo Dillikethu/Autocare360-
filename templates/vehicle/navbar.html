@@ -11,18 +11,217 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
   <style type="text/css">
-    .bs-example {
-      margin: 0px;
-
-    }
-    .bg-dark {
-    background-color: #4f55c7!important;
+   /* Modern Navbar Styling */
+:root {
+  --primary-color: #002f6c;
+  --secondary-color: #4a90e2;
+  --accent-color: #ffcc00;
+  --light-color: #ffffff;
+  --dark-color: #222222;
+  --transition-speed: 0.3s;
 }
-    .navbar-brand {
-      font-size: 20px;
-      font-family: sans-serif;
 
-    }
+.bs-example {
+  margin: 0;
+  padding-top: 56px; /* Match navbar height to prevent content from hiding behind fixed navbar */
+}
+
+/* Navbar Base Styling */
+.navbar {
+  padding: 0.8rem 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-speed) ease;
+}
+
+.bg-dark {
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)) !important;
+}
+
+/* Brand Styling */
+.navbar-brand {
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding: 0.5rem 1rem;
+  margin-right: 1.5rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.navbar-brand[style*="color:yellow"] {
+  color: var(--accent-color) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Add gear icon to brand */
+.navbar-brand::before {
+  content: "\f013"; /* Font Awesome gear icon */
+  font-family: "FontAwesome";
+  margin-right: 10px;
+  font-size: 1.2rem;
+  vertical-align: middle;
+  animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Nav Links Styling */
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 500;
+  padding: 1rem 1rem;
+  position: relative;
+  transition: all var(--transition-speed) ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--light-color);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Active Link */
+.navbar-dark .navbar-nav .nav-link.active {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.navbar-dark .navbar-nav .nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent-color);
+  transform: scaleX(1);
+}
+
+/* Underline effect on hover */
+.navbar-dark .navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent-color);
+  transform: scaleX(0);
+  transition: transform var(--transition-speed) ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Navbar Toggler */
+.navbar-toggler {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all var(--transition-speed) ease;
+}
+
+.navbar-toggler:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+.navbar-toggler-icon {
+  width: 1.3em;
+  height: 1.3em;
+}
+
+/* Navbar Collapse */
+.navbar-collapse {
+  padding: 0.5rem 0;
+}
+
+/* Adjust spacing between navbar sections */
+.justify-content-between > .navbar-nav:first-child {
+  margin-right: auto;
+}
+
+.justify-content-between > .navbar-nav:last-child {
+  margin-left: auto;
+}
+
+/* Icon additions for menu items */
+.navbar-nav .nav-item.nav-link[href="/"] {
+  position: relative;
+  padding-left: 2.2rem;
+}
+
+.navbar-nav .nav-item.nav-link[href="/"]::before {
+  content: "\f015"; /* FontAwesome home icon */
+  font-family: "FontAwesome";
+  position: absolute;
+  left: 1rem;
+}
+
+.navbar-nav .nav-item.nav-link[href="/customerclick"]::before {
+  content: "\f007"; /* FontAwesome user icon */
+  font-family: "FontAwesome";
+  margin-right: 8px;
+}
+
+.navbar-nav .nav-item.nav-link[href="/mechanicsclick"]::before {
+  content: "\f0ad"; /* FontAwesome wrench icon */
+  font-family: "FontAwesome";
+  margin-right: 8px;
+}
+
+.navbar-nav .nav-item.nav-link[href="/adminclick"]::before {
+  content: "\f0e3"; /* FontAwesome gavel icon */
+  font-family: "FontAwesome";
+  margin-right: 8px;
+}
+
+.navbar-nav .nav-item.nav-link[href="/aboutus"]::before {
+  content: "\f05a"; /* FontAwesome info-circle icon */
+  font-family: "FontAwesome";
+  margin-right: 8px;
+}
+
+.navbar-nav .nav-item.nav-link[href="contactus"]::before {
+  content: "\f0e0"; /* FontAwesome envelope icon */
+  font-family: "FontAwesome";
+  margin-right: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .navbar-brand {
+    margin-right: auto;
+  }
+  
+  .navbar-dark .navbar-nav .nav-link {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .navbar-dark .navbar-nav .nav-link::after {
+    display: none;
+  }
+  
+  .navbar-dark .navbar-nav .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .justify-content-between > .navbar-nav:last-child {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
   </style>
 </head>
 
@@ -32,7 +231,7 @@
 
   <div class="bs-example">
     <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
-      <a href="/" class="navbar-brand" style="color:yellow;">Vehicle Service Management</a>
+      <a href="/" class="navbar-brand" style="color:yellow;">AutoCar360</a>
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>

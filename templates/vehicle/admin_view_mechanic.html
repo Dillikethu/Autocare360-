@@ -31,7 +31,14 @@
               {% for m in mechanics %}
                 <tr>
                   <td> {{m.get_name}}</td>
-                  <td> <img src="{% static m.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
+                  <td> 
+                  	{% if m.profile_pic %}
+                    <img src="{{ m.profile_pic.url }}" height="40px" width="40px" />
+                    {% else %}
+                    <img src="{% static 'images/default_profile.png' %}" height="40px" width="40px" />
+                    {% endif %}
+
+                  </td>
                   <td>{{m.mobile}}</td>
                   <td>{{m.address}}</td>
                   <td>{{m.skill}}</td>
@@ -47,6 +54,17 @@
 				</div>
 			</div>
 		</div>
+
+    <form method="get" style="margin-bottom: 20px;">
+			<label for="address">Filter by Address:</label>
+			<select name="address" id="address" onchange="this.form.submit()">
+			  <option value="">All</option>
+			  {% for addr in addresses %}
+				<option value="{{ addr }}" {% if addr == selected_address %}selected{% endif %}>{{ addr }}</option>
+			  {% endfor %}
+			</select>
+		  </form>
+		  
 <!-- ****** table start ********** -->
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	</div>

@@ -5,99 +5,220 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <style>
-    /* General Page Styling */
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    color: white;
+/* Feedback Form Styling */
+:root {
+  --primary-color: #002f6c;
+  --secondary-color: #4a90e2;
+  --accent-color: #ffcc00;
+  --success-color: #2ecc71;
+  --light-color: #ffffff;
+  --dark-color: #222222;
+  --transition-speed: 0.3s;
+}
+
+
+
+/* Page title styling */
+.alert-success {
+  background-color: var(--primary-color) !important;
+  color: var(--light-color) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 15px 30px !important;
+  font-size: 1.6rem !important;
+  font-weight: 600 !important;
+  margin: 30px auto !important;
+  max-width: 600px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.alert-success::before {
+  content: "\f0e0"; /* FontAwesome envelope icon */
+  font-family: "FontAwesome";
+  position: absolute;
+  left: 20px;
+  opacity: 0.2;
+  font-size: 2.5rem;
+}
+
+/* Main feedback form container */
+.feedback-form-container {
+  background: var(--light-color);
+  padding: 40px;
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto 50px;
+  border-radius:.8px;
+  box-shadow: 0 5px 25px rgba(0, 47, 108, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative accent on the form */
+.feedback-form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+/* Styling the Django form elements */
+.form-group {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Fixing Django's paragraph wrapping */
+.form-group p {
+  margin: 0 0 20px 0;
+  position: relative;
+}
+
+/* Styling form labels */
+.form-group label {
+  display: block;
+  text-align: left;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 0.95rem;
+}
+
+/* Input fields styling */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0e7ff;
+  border-radius: 8px;
+  background-color: #f8faff;
+  color: var(--dark-color);
+  font-size: 1rem;
+  transition: all var(--transition-speed) ease;
+  box-sizing: border-box;
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Focus states */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--secondary-color);
+  background-color: var(--light-color);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  outline: none;
+}
+
+/* Placeholder styling */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #a0a8c0;
+}
+
+/* Submit button styling */
+.btn-primary {
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color)) !important;
+  color: var(--light-color) !important;
+  border: none !important;
+  border-radius: 50px !important;
+  padding: 12px 30px !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: all var(--transition-speed) ease !important;
+  box-shadow: 0 4px 15px rgba(0, 47, 108, 0.2) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.btn-primary::after {
+  content: "\f1d8"; /* FontAwesome paper plane icon */
+  font-family: "FontAwesome";
+  margin-left: 10px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 7px 20px rgba(0, 47, 108, 0.3) !important;
+}
+
+.btn-primary:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 4px 10px rgba(0, 47, 108, 0.2) !important;
+}
+
+/* Error message styling */
+.errorlist {
+  color: #e74c3c;
+  text-align: left;
+  list-style: none;
+  padding: 0;
+  margin: 5px 0 10px 0;
+  font-size: 0.85rem;
+}
+
+.errorlist li::before {
+  content: "⚠ ";
+}
+
+/* Success message styling */
+.messages {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.messages .success {
+  background-color: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border-left: 4px solid #2ecc71;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .feedback-form-container {
+    padding: 30px 20px;
+    width: 95%;
   }
   
-  /* Centering and Styling the Form */
-  .feedback-container {
-    background: rgba(25, 25, 25, 0.95);
-    padding: 40px;
-    width: 50%;
-    max-width: 600px;
-    margin: 50px auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
+  .alert-success {
+    font-size: 1.4rem !important;
+    padding: 12px 20px !important;
   }
   
-  /* Heading Styling */
-  .feedback-container h3 {
-    color: #2ecc71;
-    font-size: 24px;
-    margin-bottom: 20px;
+  .alert-success::before {
+    display: none;
   }
   
-  /* Form Styling */
-  .feedback-container form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Input Fields */
-  .feedback-container input[type="text"],
-  .feedback-container input[type="email"],
-  .feedback-container textarea {
+  .btn-primary {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: none;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border-radius: 5px;
-    outline: none;
-    font-size: 16px;
-    transition: 0.3s ease-in-out;
+    padding: 12px 20px !important;
   }
-  
-  .feedback-container textarea {
-    height: 120px;
-    resize: none;
-  }
-  
-  /* Placeholder Text Styling */
-  ::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-  }
-  
-  /* Input Focus Effect */
-  .feedback-container input:focus,
-  .feedback-container textarea:focus {
-    border: 2px solid #2ecc71;
-    background: rgba(255, 255, 255, 0.2);
-  }
-  
-  /* Submit Button */
-  .feedback-container input[type="submit"] {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    outline: none;
-    background: #2ecc71;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-  }
-  
-  .feedback-container input[type="submit"]:hover {
-    background: #27ae60;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .feedback-container {
-      width: 90%;
-      padding: 30px;
-    }
-  }
+}
+
+/* Fix for potential Django form rendering issues */
+.form-group h3 {
+  font-size: 1rem !important;
+  font-weight: normal !important;
+  margin: 0 !important;
+}
+
+.form-group h3 p {
+  margin: 0 0 15px 0 !important;
+}
   
   </style>
   
