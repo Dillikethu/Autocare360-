@@ -121,8 +121,26 @@ def admin_customer_view(request):
 
 @login_required(login_url='adminlogin')
 def admin_view_customer_view(request):
-    customers=models.Customer.objects.all()
-    return render(request,'vehicle/admin_view_customer.html',{'customers':customers})
+    selected_address = request.GET.get('address', '')
+    search_name = request.GET.get('name', '')
+
+    customers = models.Customer.objects.all()
+
+    if selected_address:
+        customers = customers.filter(address=selected_address)
+    if search_name:
+        customers = customers.filter(user__first_name__icontains=search_name)
+
+    addresses = models.Customer.objects.values_list('address', flat=True).distinct()
+
+    return render(request, 'vehicle/admin_view_customer.html', {
+        'customers': customers,
+        'addresses': addresses,
+        'selected_address': selected_address,
+        'search_name': search_name,
+    })
+
+
 
 
 @login_required(login_url='adminlogin')

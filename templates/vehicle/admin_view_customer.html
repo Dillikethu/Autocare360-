@@ -3,6 +3,21 @@
 {% load static %}
 	<!-- main content -->
 	<div class="wrapper">
+		<form method="get" style="margin-bottom: 20px;">
+			<label for="name">Search by User ID:</label>
+			<input type="text" name="name" id="name" value="{{ search_name }}">
+		
+			<label for="address">Filter by Address:</label>
+			<select name="address" id="address">
+				<option value="">All</option>
+				{% for addr in addresses %}
+					<option value="{{ addr }}" {% if selected_address == addr %}selected{% endif %}>{{ addr }}</option>
+				{% endfor %}
+			</select>
+		
+			<button type="submit">Filter</button>
+		</form>
+		
 
 <!-- ****** table  start ********** -->
 		<div class="row">
